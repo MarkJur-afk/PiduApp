@@ -10,6 +10,7 @@ using PiduApp.Models;
 
 namespace PiduApp.Controllers
 {
+    [Authorize(Roles = "Admin")] // Ainult kasutajad rolliga "Admin" saavad siia siseneda
     public class PyhadsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

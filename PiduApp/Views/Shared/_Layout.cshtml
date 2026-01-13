@@ -19,7 +19,14 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Avaleht", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Pühad", "Index", "Pyhads", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Täida ankeet", "Ankeet", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Pühade haldus", "Index", "Pyhads", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Külaliste nimekiri", "Index", "Guests", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    
                     <li>@Html.ActionLink("Meist", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>

@@ -1,0 +1,60 @@
+@model PiduApp.Models.Guest
+
+@{
+    ViewBag.Title = "Osalemise kinnitamine";
+}
+
+<div class="form-container">
+    <h2>Registreeri sündmusele</h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, "Sinu nimi:", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, "E-posti aadress:", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PyhaId, "Vali sündmus:", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.PyhaId, (SelectList)ViewBag.Pyhad, "-- Vali püha --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PyhaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.WillAttend, "Kas osaled?", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.WillAttend, new[] {
+                        new SelectListItem { Text = "Jah, osalen", Value = "true" },
+                        new SelectListItem { Text = "Ei, seekord mitte", Value = "false" }
+                    }, "-- Tee valik --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.WillAttend, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Salvesta vastus" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

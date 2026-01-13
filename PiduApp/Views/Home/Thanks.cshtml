@@ -1,0 +1,9 @@
+@model PiduApp.Models.Guest
+
+@{
+    ViewBag.Title = "Aitäh!";
+}
+
+<h2>Aitäh, @Model.Name!</h2>
+<p>Sinu vastus on edukalt salvestatud.</p>
+@Html.ActionLink("Tagasi avalehele", "Index", "Home", null, new { @class = "btn btn-default" })

@@ -1,0 +1,32 @@
+@model IEnumerable<PiduApp.Models.Guest>
+
+<h2>Külaliste haldus @(ViewBag.Filter != null ? "- " + ViewBag.Filter : "")</h2>
+
+<p>
+    @Html.ActionLink("Kõik", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Tulevad", "Tulevad", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Ei tule", "EiTule", null, new { @class = "btn btn-danger" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>Külalise nimi</th>
+        <th>E-post</th>
+        <th>Sündmus</th>
+        <th>Osaleb?</th>
+        <th>Tegevused</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Email</td>
+        <td>@item.Pyha.Nimetus</td>
+        <td>@(item.WillAttend ? "Jah" : "Ei")</td>
+        <td>
+            @Html.ActionLink("Muuda", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Kustuta", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+</table>
