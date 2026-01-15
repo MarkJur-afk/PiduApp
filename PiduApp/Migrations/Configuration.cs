@@ -31,13 +31,13 @@ namespace PiduApp.Migrations
             }
 
             // 2. Loo administraatori kasutaja
-            var adminEmail = "admin@test.ee";
+            var adminEmail = "markjurgennn@gmail.com";
             var adminUser = context.Users.FirstOrDefault(u => u.Email == adminEmail);
 
             if (adminUser == null)
             {
                 var user = new ApplicationUser { UserName = adminEmail, Email = adminEmail };
-                userManager.Create(user, "Parool123!"); // Vali turvaline parool
+                userManager.Create(user, "12345qwerty@"); // Vali turvaline parool
                 adminUser = user;
             }
 

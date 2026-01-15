@@ -12,5 +12,6 @@ namespace PiduApp.Models
         public string Email { get; set; }
         public bool WillAttend { get; set; }
         public int PyhaId { get; set; } // Viide pühale, kuhu registreerutakse
+        public virtual Pyha Pyha { get; set; } // Navigatsiooni omadus
     }
 }

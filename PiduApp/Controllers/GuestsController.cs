@@ -41,6 +41,63 @@ namespace PiduApp.Controllers
             return View("Index", eiTule);
         }
 
+        // GET: Guests/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            Guest guest = db.Guests.Find(id);
+            if (guest == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PyhaId = new SelectList(db.Pyhad, "Id", "Nimetus", guest.PyhaId);
+            return View(guest);
+        }
+
+        // POST: Guests/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Guest guest)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(guest).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.PyhaId = new SelectList(db.Pyhad, "Id", "Nimetus", guest.PyhaId);
+            return View(guest);
+        }
+
+        // GET: Guests/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            Guest guest = db.Guests.Include(g => g.Pyha).FirstOrDefault(g => g.Id == id);
+            if (guest == null)
+            {
+                return HttpNotFound();
+            }
+            return View(guest);
+        }
+
+        // POST: Guests/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Guest guest = db.Guests.Find(id);
+            db.Guests.Remove(guest);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

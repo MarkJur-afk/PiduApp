@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="PiduApp.MvcApplication" Language="C#" %>
+﻿<%@ Application Inherits="PiduApp.MvcApplication" Language="C#" %>

@@ -56,7 +56,7 @@ namespace PiduApp.Controllers
                 // Saada e-mail (näide ülaltoodud WebMail koodiga)
                 SaadaEmail(guest); 
                 
-                return RedirectToAction("Thanks", guest);
+                return RedirectToAction("Thanks");
             }
 
             // Kui tekkis viga, laeme pühad uuesti
@@ -69,11 +69,16 @@ namespace PiduApp.Controllers
             WebMail.SmtpServer = "smtp.gmail.com";
             WebMail.SmtpPort = 587;
             WebMail.EnableSsl = true;
-            WebMail.UserName = "markjurgennn@gmail.com.com";
+            WebMail.UserName = "markjurgennn@gmail.com";
             WebMail.Password = "yebx sypb jbrt uhos"; // Google App Password
 
             WebMail.Send(guest.Email, "Kutse kinnitus", 
                 "Tere " + guest.Name + "! Sinu vastus on salvestatud.");
+        }
+
+        public ActionResult Thanks()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

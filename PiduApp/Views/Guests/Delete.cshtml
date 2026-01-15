@@ -1,0 +1,55 @@
+@model PiduApp.Models.Guest
+
+@{
+    ViewBag.Title = "Kustuta külaline";
+}
+
+<h2>Kustuta külaline</h2>
+
+<h3>Kas oled kindel, et soovid selle kustutada?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Sündmus
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pyha.Nimetus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WillAttend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WillAttend)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Kustuta" class="btn btn-danger" /> |
+            @Html.ActionLink("Tagasi nimekirja", "Index")
+        </div>
+    }
+</div>
